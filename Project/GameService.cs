@@ -6,8 +6,8 @@ namespace CastleGrimtol.Project
 {
   public class GameService : IGameService
   {
-    public Room CurrentRoom { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public Player CurrentPlayer { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public Room CurrentRoom { get; set; }
+    public Player CurrentPlayer { get; set; }
 
     public void GetUserInput()
     {
@@ -63,5 +63,12 @@ namespace CastleGrimtol.Project
     {
       throw new System.NotImplementedException();
     }
+
+    public GameService()
+    {
+      Setup();
+    }
+
+
   }
 }
