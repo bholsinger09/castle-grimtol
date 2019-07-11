@@ -7,7 +7,9 @@ namespace CastleGrimtol.Project
   public class GameService : IGameService
   {
     public Room CurrentRoom { get; set; }
+    //this gets and sets the current room
     public Player CurrentPlayer { get; set; }
+    //this gets and sets current player
 
     public void GetUserInput()
     {
