@@ -46,7 +46,7 @@ namespace CastleGrimtol.Project
 
     public void Setup()
     {
-      throw new System.NotImplementedException();
+
 
       //build rooms
 

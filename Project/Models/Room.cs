@@ -7,8 +7,12 @@ namespace CastleGrimtol.Project.Models
   {
     public string Name { get; set; }
     public string Description { get; set; }
+    public Room Next { get; private set; }
+    public Room Previous { get; private set; }
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
+
+
 
     //we should add a virtural method for room go 
 
@@ -19,6 +23,9 @@ namespace CastleGrimtol.Project.Models
     {
       Name = name;
       Description = description;
+      Exits = new Dictionary<string, IRoom>();
+      Items = new List<Item>();
+
     }
 
 
