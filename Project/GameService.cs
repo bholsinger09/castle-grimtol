@@ -47,11 +47,24 @@ namespace CastleGrimtol.Project
     public void Setup()
     {
       throw new System.NotImplementedException();
+
+      //build rooms
+
+      //build relationships of rooms to each other
+
+      //possible add relationships of rooms to player
+
+
+
     }
 
     public void StartGame()
     {
       throw new System.NotImplementedException();
+
+      //while goes here
+      //current location in while print
+      //readline also goes here
     }
 
     public void TakeItem(string itemName)
@@ -66,6 +79,7 @@ namespace CastleGrimtol.Project
 
     public GameService()
     {
+      //may also add name of player here 
       Setup();
     }
 

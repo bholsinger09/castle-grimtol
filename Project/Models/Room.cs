@@ -10,6 +10,17 @@ namespace CastleGrimtol.Project.Models
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
 
+    //we should add a virtural method for room go 
+
+    //we should add print method to welcome user to room
+
+
+    public Room(string name, string description)
+    {
+      Name = name;
+      Description = description;
+    }
+
 
 
 
