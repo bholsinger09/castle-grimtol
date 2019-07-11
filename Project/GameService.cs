@@ -64,9 +64,7 @@ namespace CastleGrimtol.Project
       Room Room3 = new Room("ThirdRoom", "Room next to final room");
       Room Room4 = new Room("FinalRoom", "Last Room");
 
-      Room1.addNextRoom(Room2);
-      Room2.addNextRoom(Room3);
-      Room3.addNextRoom(Room4);
+
 
       //build rooms
 
@@ -75,7 +73,12 @@ namespace CastleGrimtol.Project
       //buiding relationships with rooms and exits
       Room1.Exits.Add("east", Room2);
       Room2.Exits.Add("west", Room1);
+      Room2.Exits.Add("north", Room3);
+      Room3.Exits.Add("south", Room2);
+      Room1.Exits.Add("west", Room4);
 
+      //                                                     [room 3-final wrong room]north of room 2
+      // [room 4 final right room] --west[room 1] -go east   [room 2] south of room 3
 
 
 
