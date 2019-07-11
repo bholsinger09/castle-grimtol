@@ -26,7 +26,11 @@ namespace CastleGrimtol.Project.Models
 
     public void PrintOptions()
     {
-      Console.Write("type 'go next' to go to door , 'go previous' to go back to previous room, or 'find key' to find key to door that maybe locked");
+      Console.Write("type 'n' to go north, 's' to go south 'w' to go west 'e' to go east");
+      foreach (var exit in Exits)
+      {
+        Console.Write(exit.Key + ":");
+      }
 
     }
 

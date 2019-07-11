@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CastleGrimtol.Project.Interfaces;
 using CastleGrimtol.Project.Models;
+using System;
 
 namespace CastleGrimtol.Project
 {
@@ -13,16 +14,54 @@ namespace CastleGrimtol.Project
 
     public void GetUserInput()
     {
-      //this will have write methods for options for player
+      //this will have write methods for options for player see planets lines 62-77
+      CurrentRoom.Print();
+      CurrentRoom.PrintOptions();
+      string input = Console.ReadLine().ToLower();
+      Console.Clear();
+      string[] inputs = input.Split(' ');
+      string command = inputs[0];
+      //command at that point should be what the user types
+      //example command should be 'n' north direction
+      string option = "";
+      if (inputs.Length > 1)
+      {
+        option = inputs[1];
+        //sets option to input direction 
+      }
+      switch (command)
+      {
+        case "go south":
+          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          break;
+        case "go north":
+          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
 
-      throw new System.NotImplementedException();
+          break;
+        case "go east":
+          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          break;
+        case "go west":
+          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          break;
+
+      }
+
+
     }
-
     public void Go(string direction)
     {
-      // this will implement the directions user enters
-      // this is where we move between rooms 
-      throw new System.NotImplementedException();
+
+
+      CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
+
+      //call look
+      //print some thing
+
+
+      //Validate CurrentRoom.Exits contains the desired direction
+      //if it does change the CurrentRoom
+
     }
 
     public void Help()
@@ -90,7 +129,8 @@ namespace CastleGrimtol.Project
 
       //while goes here
       //current location in while print
-      //readline also goes here
+      //call GetUserInput();
+      //will also call the quit game here 
     }
 
     public void TakeItem(string itemName)
