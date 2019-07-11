@@ -13,36 +13,46 @@ namespace CastleGrimtol.Project
 
     public void GetUserInput()
     {
+      //this will have write methods for options for player
+
       throw new System.NotImplementedException();
     }
 
     public void Go(string direction)
     {
+      // this will implement the directions user enters
+      // this is where we move between rooms 
       throw new System.NotImplementedException();
     }
 
     public void Help()
     {
+      //this tells the user hints 
       throw new System.NotImplementedException();
     }
 
     public void Inventory()
     {
+      //this addes item to inventory of user
       throw new System.NotImplementedException();
     }
 
     public void Look()
     {
+      //this allows player to look for items in rooms 
+      //this will also tell user what exits are available
       throw new System.NotImplementedException();
     }
 
     public void Quit()
     {
+      //this sets running to false 
       throw new System.NotImplementedException();
     }
 
     public void Reset()
     {
+      //this reset running from false to true
       throw new System.NotImplementedException();
     }
 
@@ -71,11 +81,13 @@ namespace CastleGrimtol.Project
 
     public void TakeItem(string itemName)
     {
+      //this allows player to take item
       throw new System.NotImplementedException();
     }
 
     public void UseItem(string itemName)
     {
+      //this lets player to use item
       throw new System.NotImplementedException();
     }
 

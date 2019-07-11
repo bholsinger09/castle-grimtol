@@ -12,6 +12,7 @@ namespace CastleGrimtol.Project.Models
     public virtual void MovePlayer()
     {
       throw new NotImplementedException("Must provide Go method");
+      //this will be overrided in gameservice 
     }
 
     public Player(string playerName)
