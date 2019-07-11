@@ -59,12 +59,23 @@ namespace CastleGrimtol.Project
     public void Setup()
     {
 
+      Room Room1 = new Room("StarterRoom", "Room user starts in");
+      Room Room2 = new Room("SecondRoom", "Room next to starter room");
+      Room Room3 = new Room("ThirdRoom", "Room next to final room");
+      Room Room4 = new Room("FinalRoom", "Last Room");
+
+      Room1.addNextRoom(Room2);
+      Room2.addNextRoom(Room3);
+      Room3.addNextRoom(Room4);
 
       //build rooms
 
       //build relationships of rooms to each other
 
-      //possible add relationships of rooms to player
+      //buiding relationships with rooms and exits
+      Room1.Exits.Add("east", Room2);
+      Room2.Exits.Add("west", Room1);
+
 
 
 

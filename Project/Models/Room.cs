@@ -8,22 +8,13 @@ namespace CastleGrimtol.Project.Models
   {
     public string Name { get; set; }
     public string Description { get; set; }
-    public Room Next { get; private set; }
-    public Room Previous { get; private set; }
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
 
 
 
 
-    public void addNextRoom(Room next)
-    {
-      Next = next;
-    }
-    public void AddPreviousRoom(Room previous)
-    {
-      Previous = previous;
-    }
+
 
     public void Print()
     {
@@ -39,23 +30,15 @@ namespace CastleGrimtol.Project.Models
 
     }
 
-    public Room Go(string dir)
+
+    public IRoom GoToRoom(string dir)
     {
-      switch (dir)
+      if (Exits.ContainsKey(dir))
       {
-        case "previous":
-          if (Previous != null) return Previous;
-          return this;
-
-        case "next":
-          if (Next != null) return Next;
-          return this;
-
-        default:
-          return this;
-
-
+        return Exits[dir];
       }
+      Console.WriteLine("Invalid direction");
+      return this;
     }
 
 
