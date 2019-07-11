@@ -34,17 +34,20 @@ namespace CastleGrimtol.Project
       switch (command)
       {
         case "go south":
-          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          Go(option);
           break;
         case "go north":
-          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          Go(option);
 
           break;
         case "go east":
-          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          Go(option);
           break;
         case "go west":
-          CurrentRoom = (Room)CurrentRoom.GoToRoom(option);
+          Go(option);
+          break;
+        case "default":
+          Console.Write("please choose valid option");
           break;
 
       }
@@ -143,7 +146,7 @@ namespace CastleGrimtol.Project
         CurrentRoom.PrintOptions();
         string input = Console.ReadLine().ToLower();
         Console.Clear();
-
+        GetUserInput();
 
 
 
@@ -170,9 +173,9 @@ namespace CastleGrimtol.Project
       throw new System.NotImplementedException();
     }
 
-    public GameService(string name)
+    public GameService()
     {
-      //may also add name of player here 
+
 
       Setup();
     }
