@@ -7,6 +7,8 @@ namespace CastleGrimtol.Project
 {
   public class GameService : IGameService
   {
+    private bool running = true;
+
     public Room CurrentRoom { get; set; }
     //this gets and sets the current room
     public Player CurrentPlayer { get; set; }
@@ -125,8 +127,31 @@ namespace CastleGrimtol.Project
 
     public void StartGame()
     {
-      throw new System.NotImplementedException();
 
+      while (running)
+      {
+        string name = CurrentPlayer.PlayerName;
+        Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
+        name = Console.ReadLine();
+        Console.Clear();
+        Console.WriteLine("I want to play a game, {name}");
+
+        Console.WriteLine("Rise and shine {name}, you are probably wondering where you are.  I'll tell you where you might be. You might be in the room that you die in. The choice is yours. As you may tell, you are in a Castle. You are playing the character of Codemonkey. Codemonkey and the love of his life is in the balance. ");
+
+        CurrentRoom.Print();
+        //should print name of the room
+        CurrentRoom.PrintOptions();
+        string input = Console.ReadLine().ToLower();
+        Console.Clear();
+
+
+
+
+
+
+
+
+      }
       //while goes here
       //current location in while print
       //call GetUserInput();
@@ -145,9 +170,10 @@ namespace CastleGrimtol.Project
       throw new System.NotImplementedException();
     }
 
-    public GameService()
+    public GameService(string name)
     {
       //may also add name of player here 
+
       Setup();
     }
 

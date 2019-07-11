@@ -26,6 +26,7 @@ namespace CastleGrimtol.Project.Models
 
     public void PrintOptions()
     {
+      Console.WriteLine("There are a total of 4 rooms in this Castle.  Each room has between one or two doors.  The directions you can go are North, South, East and West.  Each room is a two dimention square.  The first room you are in has a key to a locked door.  It also has Two doors.  The locked door will get you into the other 2 rooms.  Choose wisely.");
       Console.Write("type 'n' to go north, 's' to go south 'w' to go west 'e' to go east");
       foreach (var exit in Exits)
       {
