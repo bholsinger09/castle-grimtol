@@ -11,8 +11,10 @@ namespace CastleGrimtol.Project
 
     public Room CurrentRoom { get; set; }
     //this gets and sets the current room
+    //set this up in setup
     public Player CurrentPlayer { get; set; }
     //this gets and sets current player
+    //set this up in setup 
 
     public void GetUserInput()
     {
@@ -125,14 +127,20 @@ namespace CastleGrimtol.Project
       // [room 4 final right room] --west[room 1] -go east   [room 2] south of room 3
 
 
+      //added current room as room1 and added codemonkey as current player
+      CurrentRoom = Room1;
+
+      Player Codemonkey = new Player("Codemonkey");
+
+      Codemonkey = CurrentPlayer;
 
     }
 
     public void StartGame()
     {
-
       while (running)
       {
+
         string name = CurrentPlayer.PlayerName;
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
         name = Console.ReadLine();
