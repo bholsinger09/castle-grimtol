@@ -138,16 +138,29 @@ namespace CastleGrimtol.Project
 
     public void StartGame()
     {
+      Player Codemonkey = new Player("Codemonkey");
+
+      Codemonkey = CurrentPlayer;
+
+      // Room Room1 = new Room("StarterRoom", "Room user starts in");
+      // CurrentRoom = Room1;
+
+
       while (running)
       {
 
-        string name = CurrentPlayer.PlayerName;
-        Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
-        name = Console.ReadLine();
-        Console.Clear();
-        Console.WriteLine("I want to play a game, {name}");
 
-        Console.WriteLine("Rise and shine {name}, you are probably wondering where you are.  I'll tell you where you might be. You might be in the room that you die in. The choice is yours. As you may tell, you are in a Castle. You are playing the character of Codemonkey. Codemonkey and the love of his life is in the balance. ");
+
+
+
+        Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
+        string name = Console.ReadLine();
+        name = Codemonkey.PlayerName;
+
+        Console.Clear();
+        Console.WriteLine($"I want to play a game, {name}");
+
+        Console.WriteLine($"Rise and shine {name}, you are probably wondering where you are.  I'll tell you where you might be. You might be in the room that you die in. The choice is yours. As you may tell, you are in a Castle. You are playing the character of Codemonkey. Codemonkey and the love of his life is in the balance. ");
 
         CurrentRoom.Print();
         //should print name of the room
