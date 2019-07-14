@@ -1,5 +1,7 @@
 ﻿using System;
 using CastleGrimtol.Project;
+using CastleGrimtol.Project.Models;
+
 
 namespace CastleGrimtol
 {
@@ -7,8 +9,13 @@ namespace CastleGrimtol
   {
     public static void Main(string[] args)
     {
-      GameService GameService = new GameService();
-      GameService.StartGame();
+
+            Player Ben = new Player("ben");
+            Room StartingRoom = new Room("roomStart", "starting in this room");
+            GameService GameService = new GameService(Ben,StartingRoom);
+          
+
+            GameService.StartGame();
     }
   }
 }

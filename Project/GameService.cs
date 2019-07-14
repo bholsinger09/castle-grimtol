@@ -138,12 +138,13 @@ namespace CastleGrimtol.Project
 
     public void StartGame()
     {
-      Player Codemonkey = new Player("Codemonkey");
+      
 
-      Codemonkey = CurrentPlayer;
+      
 
-      // Room Room1 = new Room("StarterRoom", "Room user starts in");
-      // CurrentRoom = Room1;
+      
+
+     
 
 
       while (running)
@@ -155,7 +156,10 @@ namespace CastleGrimtol.Project
 
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
         string name = Console.ReadLine();
-        name = Codemonkey.PlayerName;
+        
+
+
+
 
         Console.Clear();
         Console.WriteLine($"I want to play a game, {name}");
@@ -194,9 +198,10 @@ namespace CastleGrimtol.Project
       throw new System.NotImplementedException();
     }
 
-    public GameService()
+    public GameService(Player currentPlayer , Room currentRoom )
     {
-
+      currentPlayer = CurrentPlayer;
+      currentRoom = CurrentRoom;
 
       Setup();
     }
