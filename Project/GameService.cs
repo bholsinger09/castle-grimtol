@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CastleGrimtol.Project.Interfaces;
 using CastleGrimtol.Project.Models;
+using System.Threading;
 using System;
 
 namespace CastleGrimtol.Project
@@ -18,34 +19,49 @@ namespace CastleGrimtol.Project
 
     public void GetUserInput()
     {
-      //this will have write methods for options for player see planets lines 62-77
+
       CurrentRoom.Print();
       CurrentRoom.PrintOptions();
       string input = Console.ReadLine().ToLower();
-      Console.Clear();
+      Console.WriteLine("checking input");
+
       string[] inputs = input.Split(' ');
-      string command = inputs[0];
-      //command at that point should be what the user types
-      //example command should be 'n' north direction
+      //example input "go north"
+      //string array for input is equal to spitting the input at go and at north
+      //go is index 0 and north is index 1
+
+
       string option = "";
+      //here we check to make sure input string length is greater than one
       if (inputs.Length > 1)
       {
+        Console.WriteLine("input string length is greater than one");
         option = inputs[1];
-        //sets option to input direction 
+        //input at index 1 is the direction entered
+        //option now becomes direction
+        Console.WriteLine("this is the direction chosen: " + option);
+
       }
-      switch (command)
+      Console.WriteLine("should be entering switch");
+      Console.WriteLine("checking value of input: " + input);
+      Console.WriteLine("");
+      switch (input)
       {
         case "go south":
+          Console.WriteLine("going south");
           Go(option);
           break;
         case "go north":
+          Console.WriteLine("going north");
           Go(option);
 
           break;
         case "go east":
+          Console.WriteLine("going east");
           Go(option);
           break;
         case "go west":
+          Console.WriteLine("going west");
           Go(option);
           break;
         case "default":
@@ -59,8 +75,9 @@ namespace CastleGrimtol.Project
     public void Go(string direction)
     {
 
-
+      Console.WriteLine("going to:  " + direction);
       CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
+
 
       //call look
       //print some thing
@@ -92,8 +109,7 @@ namespace CastleGrimtol.Project
 
     public void Quit()
     {
-      //this sets running to false 
-      throw new System.NotImplementedException();
+      running = false;
     }
 
     public void Reset()
@@ -138,40 +154,64 @@ namespace CastleGrimtol.Project
 
     public void StartGame()
     {
-      
 
-      
 
-      
 
-     
+
+
+
+
 
 
       while (running)
       {
-
-
-
-
-
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
         string name = Console.ReadLine();
-        
-
-
-
 
         Console.Clear();
-        Console.WriteLine($"I want to play a game, {name}");
 
-        Console.WriteLine($"Rise and shine {name}, you are probably wondering where you are.  I'll tell you where you might be. You might be in the room that you die in. The choice is yours. As you may tell, you are in a Castle. You are playing the character of Codemonkey. Codemonkey and the love of his life is in the balance. ");
+        Console.WriteLine($"Rise and shine {name}");
+        Thread.Sleep(500);
+        Console.WriteLine("I want to play a game, the rules are simple.  ");
+        Console.WriteLine("You are probably wondering where you are.  I'll tell you where you might be. You might be in the room that you die in. The choice is yours. As you may tell, you are in a Castle. You are playing the character of Codemonkey. Codemonkey and the love of his life is in the balance. ");
+        Console.WriteLine("To continue yes/no the choice is yours");
+        string response = Console.ReadLine().ToLower();
+        if (response == "yes")
+        {
+          Console.Clear();
+          GetUserInput();
+        }
+        else if (response == "no")
+        {
+          Console.Write("Don't forget the rules...");
+          System.Console.Write("Processing");
+          for (int i = 0; i < 5; i++)
+          {
+            Thread.Sleep(500);
+            Console.Write('.');
+          }
 
-        CurrentRoom.Print();
+          Quit();
+        }
+        else
+        {
+          Console.WriteLine("Your responce is invalid.  Don't for get the rules.");
+          Thread.Sleep(500);
+          Console.Clear();
+
+
+        }
+
+
+
+
+
+
+
         //should print name of the room
-        CurrentRoom.PrintOptions();
-        string input = Console.ReadLine().ToLower();
-        Console.Clear();
-        GetUserInput();
+
+
+
 
 
 
@@ -198,7 +238,7 @@ namespace CastleGrimtol.Project
       throw new System.NotImplementedException();
     }
 
-    public GameService(Player currentPlayer , Room currentRoom )
+    public GameService(Player currentPlayer, Room currentRoom)
     {
       currentPlayer = CurrentPlayer;
       currentRoom = CurrentRoom;

@@ -10,12 +10,12 @@ namespace CastleGrimtol
     public static void Main(string[] args)
     {
 
-            Player Ben = new Player("ben");
-            Room StartingRoom = new Room("roomStart", "starting in this room");
-            GameService GameService = new GameService(Ben,StartingRoom);
-          
+      Player Ben = new Player("ben");
+      Room StartingRoom = new Room("roomStart", "starting in this room");
+      GameService GameService = new GameService(Ben, StartingRoom);
 
-            GameService.StartGame();
+
+      GameService.StartGame();
     }
   }
 }
