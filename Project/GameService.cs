@@ -79,6 +79,7 @@ namespace CastleGrimtol.Project
       CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
 
 
+
       //call look
       //print some thing
 
@@ -121,10 +122,10 @@ namespace CastleGrimtol.Project
     public void Setup()
     {
 
-      Room Room1 = new Room("StarterRoom", "Room user starts in");
-      Room Room2 = new Room("SecondRoom", "Room next to starter room");
-      Room Room3 = new Room("ThirdRoom", "Room next to final room");
-      Room Room4 = new Room("FinalRoom", "Last Room");
+      Room Room1 = new Room("StarterRoom", "Here is where you start.  You are east of room two.");
+      Room Room2 = new Room("SecondRoom", "You have gone east from the start. You have entered into the second room.  ");
+      Room Room3 = new Room("ThirdRoom", "You have gone north to the third room");
+      Room Room4 = new Room("FinalRoom", "You went west of the starter room.  You are now in the final room.");
 
 
 
@@ -139,16 +140,15 @@ namespace CastleGrimtol.Project
       Room3.Exits.Add("south", Room2);
       Room1.Exits.Add("west", Room4);
 
-      //                                                     [room 3-final wrong room]north of room 2
+      //                                                     [room 3-final wrong room]north 
       // [room 4 final right room] --west[room 1] -go east   [room 2] south of room 3
 
 
-      //added current room as room1 and added codemonkey as current player
+      //added current room as room1 
       CurrentRoom = Room1;
 
-      Player Codemonkey = new Player("Codemonkey");
 
-      Codemonkey = CurrentPlayer;
+
 
     }
 

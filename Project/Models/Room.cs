@@ -42,6 +42,7 @@ namespace CastleGrimtol.Project.Models
       if (Exits.ContainsKey(dir))
       {
         Console.WriteLine("exits should contain direction used  " + dir);
+        Console.WriteLine(Exits[dir]);
         return Exits[dir];
       }
       Console.WriteLine("Invalid direction");
