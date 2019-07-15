@@ -9,17 +9,20 @@ namespace CastleGrimtol.Project
   
   public static class CastleMap
   {
-      public static List<MapItem> ListItems()
+
+        //                                                             [room 2-final wrong room]north 
+        // [room 3 final right room] --west[room 0 starter] -go east   [room 1 locked] south of room 3
+        public static List<MapItem> ListItems()
       {
             var rooms = new List<MapItem>();
             var room = new MapItem();
-            room.Init("starterRoom", "You start here", 0, new Dictionary<int, string> { { 1, "west"}, {2, "east" }});
+            room.Init("starterRoom", "You start here", 0, new Dictionary<int, string> { { 3, "west"}, {1, "east" }});
             rooms.Add(room);
-            room.Init("starterRoom", "You start here", 1, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            room.Init("lockedRoom", "You start here", 1, new Dictionary<int, string> { { 0, "east" }, { 2, "north" } });
             rooms.Add(room);
-            room.Init("starterRoom", "You start here", 2, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            room.Init("NorthDeathTrap", "You start here", 2, new Dictionary<int, string> { { 1, "south" }, { 3, "west" } });
             rooms.Add(room);
-            room.Init("starterRoom", "You start here", 3, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            room.Init("WestFinalRoom", "You start here", 3, new Dictionary<int, string> { { 0, "east" }, { 3, "east" } });
             rooms.Add(room);
             return rooms;
       }
@@ -160,29 +163,33 @@ namespace CastleGrimtol.Project
     {
             var roomMapListing = CastleMap.ListItems();
             var rooms = new List<Room>();
-            //foreach (roomMapListing )
+            for (var i = 1; i < roomMapListing.Count; i++)
+            {
+                var roomML = roomMapListing[i];
+                Room roomInstance = new Room(roomML.RoomName, roomML.RoomDescription, i);
+                rooms.Add(roomInstance);
+            }
 
 
 
 
             //build rooms
 
-           
-
-         
-      
-
-      //                                                     [room 3-final wrong room]north 
-      // [room 4 final right room] --west[room 1] -go east   [room 2] south of room 3
-
-
-      
-     
 
 
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+        }
 
     public void StartGame()
     {
