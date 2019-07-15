@@ -129,14 +129,14 @@ namespace CastleGrimtol.Project
     public void Go(string dir)
     {
       #region pastCode
-      var occupiedRoom = new MapItem();
+      // var occupiedRoom = new MapItem();
 
-      if (occupiedRoom.Exits.ContainsKey(key))
-      {
-        //CurrentRoom = occupiedRoom.Exits(int key, string dir);
-        return occupiedRoom.Exits[key];
+      // if (occupiedRoom.Exits.ContainsKey(key))
+      // {
+      //   //CurrentRoom = occupiedRoom.Exits(int key, string dir);
+      //   return occupiedRoom.Exits[key];
 
-      }
+      // }
       #endregion
 
       #region currentCode
@@ -199,12 +199,12 @@ namespace CastleGrimtol.Project
     public void Setup()
     {
       #region pastCode
-      var rooms = new List<Room>();
-      foreach (MapItem roomMI in CastleMap.ListItems())
-      {
-        Room roomInstance = new Room(roomMI.RoomName, roomMI.RoomDescription, roomMI.Key);
-        rooms.Add(roomInstance);
-      }
+      // var rooms = new List<Room>();
+      // foreach (MapItem roomMI in CastleMap.ListItems())
+      // {
+      //   Room roomInstance = new Room(roomMI.RoomName, roomMI.RoomDescription, roomMI.Key);
+      //   rooms.Add(roomInstance);
+      // }
       #endregion
 
       #region instantiate rooms
