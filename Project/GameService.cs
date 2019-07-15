@@ -93,26 +93,28 @@ namespace CastleGrimtol.Project
       // Console.WriteLine("");
       #endregion
 
-      MapItem occupiedRoom;
+      //MapItem occupiedRoom;
+      var playerRoom = new MapItem();
+
       #region inputSwitch
       switch (input)
       {
         case "go south":
           Console.WriteLine("going south");
-          Go();
+          Go(playerRoom.Key);
           break;
         case "go north":
           Console.WriteLine("going north");
-          Go();
+          Go(playerRoom.Key);
 
           break;
         case "go east":
           Console.WriteLine("going east");
-          Go();
+          Go(playerRoom.Key);
           break;
         case "go west":
           Console.WriteLine("going west");
-          Go();
+          Go(playerRoom.Key);
           break;
         case "default":
           Console.Write("please choose valid option");
@@ -127,7 +129,7 @@ namespace CastleGrimtol.Project
 
 
 
-      MapItem occupiedRoom;
+      var occupiedRoom = new MapItem();
 
       if (occupiedRoom.Exits.ContainsKey(key))
       {
