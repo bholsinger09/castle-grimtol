@@ -4,16 +4,28 @@ using System;
 
 namespace CastleGrimtol.Project.Models
 {
-  public class Player : IPlayer
+  public class Player : IPlayer, IRoom
   {
     public string PlayerName { get; set; }
     public List<Item> Inventory { get; set; }
 
-    public virtual void MovePlayer()
-    {
-      throw new NotImplementedException("Must provide Go method");
-      //this will be overrided in gameservice 
-    }
+    #region Room
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<Item> Items { get; set; }
+    public Dictionary<string, IRoom> Exits { get; set; }
+
+    #endregion
+
+    // public MovePlayer(string direction)
+    // {
+    //   Room OccupiedRoom = new Room("occupied", "setting occupied room");
+    //   if (OccupiedRoom.Name == direction){
+    //     return OccupiedRoom.Description;
+    //   }
+
+
+    // }
 
     public Player(string playerName)
     {

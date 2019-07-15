@@ -68,6 +68,7 @@ namespace CastleGrimtol.Project
       CurrentRoom.Print();
       CurrentRoom.PrintOptions();
       string input = Console.ReadLine().ToLower();
+
       #region Current Code
       Console.WriteLine("checking input");
 
@@ -81,16 +82,16 @@ namespace CastleGrimtol.Project
       //here we check to make sure input string length is greater than one
       if (inputs.Length > 1)
       {
-        Console.WriteLine("input string length is greater than one");
+        //Console.WriteLine("input string length is greater than one");
         option = inputs[1];
         //input at index 1 is the direction entered
         //option now becomes direction
-        Console.WriteLine("this is the direction chosen: " + option);
+        // Console.WriteLine("this is the direction chosen: " + option);
 
       }
-      Console.WriteLine("should be entering switch");
-      Console.WriteLine("checking value of input: " + input);
-      Console.WriteLine("");
+      // Console.WriteLine("should be entering switch");
+      // Console.WriteLine("checking value of input: " + input);
+      // Console.WriteLine("");
       #endregion
 
       #region Past Code
@@ -125,7 +126,11 @@ namespace CastleGrimtol.Project
       }
       #endregion
 
+
+
     }
+
+
     public void Go(string dir)
     {
       #region pastCode
@@ -141,6 +146,22 @@ namespace CastleGrimtol.Project
 
       #region currentCode
       CurrentRoom = (Room)CurrentRoom.GoToRoom(dir);
+      Console.Clear();
+      Console.WriteLine(CurrentRoom.Description);
+      if (CurrentRoom.Name == "ThirdRoom")
+      {
+        Console.WriteLine("hitting if statement in third room");
+        EndRoom();
+      }
+      if (CurrentRoom.Name == "FinalRoom")
+      {
+        EndRoom();
+      }
+      else
+      {
+        GetUserInput();
+      }
+
 
 
 
@@ -182,8 +203,7 @@ namespace CastleGrimtol.Project
 
     public void Reset()
     {
-      //this reset running from false to true
-      throw new System.NotImplementedException();
+      StartGame();
     }
 
     public void PrintWelcome()
@@ -193,6 +213,47 @@ namespace CastleGrimtol.Project
       //this print should be accessed in gameservice
       // to define what is printed in each different room
     }
+
+    public void EndRoom()
+    {
+      Console.WriteLine("");
+      if (CurrentRoom.Name == "ThirdRoom")
+      {
+        Console.WriteLine(" You Loose ");
+        Console.WriteLine("type reset to reset or quit to quit.");
+        string response = Console.ReadLine().ToLower();
+        if (response == "quit")
+        {
+          Console.WriteLine("you entered the if block under 'quit'");
+          Quit();
+        }
+        if (response == "restart")
+        {
+          Reset();
+        }
+      }
+      else if (CurrentRoom.Name == "FinalRoom")
+      {
+        Console.WriteLine("You Win");
+        Console.WriteLine("type reset to reset or quit to quit.");
+        string response = Console.ReadLine().ToLower();
+        if (response == "quit")
+        {
+          Quit();
+        }
+        if (response == "restart")
+        {
+          Reset();
+        }
+
+      }
+      else
+      {
+        Console.WriteLine(CurrentRoom.Name);
+      }
+
+    }
+
 
 
 
@@ -208,22 +269,26 @@ namespace CastleGrimtol.Project
       #endregion
 
       #region instantiate rooms
-      Room Room1 = new Room("StarterRoom", "Here is where you start.  You are east of room two.");
-      Room Room2 = new Room("SecondRoom", "You have gone east from the start. You have entered into the second room.  ");
-      Room Room3 = new Room("ThirdRoom", "You have gone north to the third room");
-      Room Room4 = new Room("FinalRoom", "You went west of the starter room.  You are now in the final room.");
+      Room Room1 = new Room("StarterRoom", "Here is where you started.  You are east of room two.  The door is currently still unlocked to get back and forth between This room and Room 2. Lets call that room your Gateway room.");
+      Room Room2 = new Room("SecondRoom (Gateway)", "Congrats on finding the key and unlocking the door to get to this room.  You have gone east from the start. You have entered into the second room also known as your gateway. You could go back to the start or you can go north to room 3.  Note that the room is pitch black. You may need a light to go forward.");
+      Room Room3 = new Room("ThirdRoom", "You have gone north to the third room.  You will find the door slammed shut.  You are now stuck in this room. The rules were simple.  The hints were before your eyes ");
+      Room Room4 = new Room("FinalRoom", "You went west of the starter room.  You are now in the final room.  Congrats.  You have chosen wisely.  Not all doors need need keys.  Codemonkey will live a long life with his love.");
       #endregion
 
       #region AddExits
       //buiding relationships with rooms and exits
       Room1.Exits.Add("east", Room2);
-      Room2.Exits.Add("west", Room1);
-      Room2.Exits.Add("north", Room3);
-      Room3.Exits.Add("south", Room2);
+      //room 4 is victory
       Room1.Exits.Add("west", Room4);
+      Room2.Exits.Add("west", Room1);
+      //room 3 is dead end
+      Room2.Exits.Add("north", Room3);
+
+
       #endregion
 
       CurrentRoom = Room1;
+
     }
 
     public void StartGame()
@@ -245,6 +310,7 @@ namespace CastleGrimtol.Project
         {
           Console.Clear();
           GetUserInput();
+          //EndRoom();
         }
         else if (response == "no")
         {
@@ -266,6 +332,8 @@ namespace CastleGrimtol.Project
 
 
         }
+
+
 
 
 
@@ -307,8 +375,8 @@ namespace CastleGrimtol.Project
 
     public GameService(Player currentPlayer, Room currentRoom)
     {
-      currentPlayer = CurrentPlayer;
-      currentRoom = CurrentRoom;
+      CurrentPlayer = currentPlayer;
+      CurrentRoom = currentRoom;
 
       Setup();
     }

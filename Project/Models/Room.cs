@@ -28,7 +28,7 @@ namespace CastleGrimtol.Project.Models
     //using printoptions because of exits
     public void PrintOptions()
     {
-      Console.WriteLine("There are a total of 4 rooms in this Castle.  Each room has between one or two doors.  The directions you can go are North, South, East and West.  Each room is a two dimention square.  The first room you are in has a key to a locked door.  It also has Two doors.  The locked door will get you into the other 2 rooms.  Choose wisely.");
+      Console.WriteLine("There are a total of 4 rooms in this Castle.  Each room has between one or two doors.  The directions you can go are North, South, East and West.  Each room is a two dimention square. Choose wisely.");
       Console.Write("type 'go north', 'go south', 'to west', or 'go east' to go east.  ");
       foreach (var exit in Exits)
       {
@@ -46,7 +46,7 @@ namespace CastleGrimtol.Project.Models
       if (Exits.ContainsKey(dir))
       {
         Console.WriteLine("exits should contain direction used  " + dir);
-        Console.WriteLine(Exits[dir]);
+        //Console.WriteLine(Exits[dir]);
         return Exits[dir];
       }
       Console.WriteLine("Invalid direction");
