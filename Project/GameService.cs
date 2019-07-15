@@ -7,6 +7,7 @@ using System;
 namespace CastleGrimtol.Project
 {
 
+  #region Map
   public static class CastleMap
   {
 
@@ -46,6 +47,7 @@ namespace CastleGrimtol.Project
     }
   }
 
+  #endregion
   public class GameService : IGameService
   {
     private bool running = true;
@@ -58,62 +60,69 @@ namespace CastleGrimtol.Project
     //this gets and sets current player
     //set this up in setup 
 
+    #region methods
+
     public void GetUserInput()
     {
 
-      //CurrentRoom.Print();
+
       CurrentRoom.PrintOptions();
       string input = Console.ReadLine().ToLower();
+      #region PastCode
       // Console.WriteLine("checking input");
 
-      string[] inputs = input.Split(' ');
+      //string[] inputs = input.Split(' ');
       //example input "go north"
       //string array for input is equal to spitting the input at go and at north
       //go is index 0 and north is index 1
 
 
-      string option = "";
+      //string option = "";
       //here we check to make sure input string length is greater than one
-      if (inputs.Length > 1)
-      {
-        //   Console.WriteLine("input string length is greater than one");
-        option = inputs[1];
-        //   //input at index 1 is the direction entered
-        //   //option now becomes direction
-        //   Console.WriteLine("this is the direction chosen: " + option);
+      //if (inputs.Length > 1)
+      //{
+      //   Console.WriteLine("input string length is greater than one");
+      // option = inputs[1];
+      //   //input at index 1 is the direction entered
+      //   //option now becomes direction
+      //   Console.WriteLine("this is the direction chosen: " + option);
 
-      }
+      //}
       // Console.WriteLine("should be entering switch");
       // Console.WriteLine("checking value of input: " + input);
       // Console.WriteLine("");
+      #endregion
+
+      MapItem occupiedRoom;
+      #region inputSwitch
       switch (input)
       {
         case "go south":
           Console.WriteLine("going south");
-          Go(option);
+          Go();
           break;
         case "go north":
           Console.WriteLine("going north");
-          Go(option);
+          Go();
 
           break;
         case "go east":
           Console.WriteLine("going east");
-          Go(option);
+          Go();
           break;
         case "go west":
           Console.WriteLine("going west");
-          Go(option);
+          Go();
           break;
         case "default":
           Console.Write("please choose valid option");
           break;
 
       }
-
+      #endregion
 
     }
-    public void Go(string key)
+    public void Go(int key)
     {
 
 
@@ -124,6 +133,8 @@ namespace CastleGrimtol.Project
       {
 
       }
+
+      #region pastCode
       //CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
 
       //if (Exits.ContainsKey(dir))
@@ -139,6 +150,8 @@ namespace CastleGrimtol.Project
 
       //call look
       //print some thing
+
+      #endregion
 
 
       //Validate CurrentRoom.Exits contains the desired direction
@@ -200,33 +213,10 @@ namespace CastleGrimtol.Project
 
       //build rooms
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void StartGame()
     {
-
-
-
-
-
-
-
-
-
       while (running)
       {
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
@@ -301,6 +291,8 @@ namespace CastleGrimtol.Project
       //this lets player to use item
       throw new System.NotImplementedException();
     }
+
+    #endregion
 
     public GameService(Player currentPlayer, Room currentRoom)
     {
