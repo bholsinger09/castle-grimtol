@@ -161,12 +161,10 @@ namespace CastleGrimtol.Project
 
     public void Setup()
     {
-            var roomMapListing = CastleMap.ListItems();
             var rooms = new List<Room>();
-            for (var i = 1; i < roomMapListing.Count; i++)
+            foreach (MapItem roomMI in CastleMap.ListItems())
             {
-                var roomML = roomMapListing[i];
-                Room roomInstance = new Room(roomML.RoomName, roomML.RoomDescription, i);
+                Room roomInstance = new Room(roomMI.RoomName, roomMI.RoomDescription, roomMI.Key);
                 rooms.Add(roomInstance);
             }
 
