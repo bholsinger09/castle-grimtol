@@ -6,7 +6,44 @@ using System;
 
 namespace CastleGrimtol.Project
 {
-  public class GameService : IGameService
+  
+  public static class CastleMap
+  {
+      public static List<MapItem> ListItems()
+      {
+            var rooms = new List<MapItem>();
+            var room = new MapItem();
+            room.Init("starterRoom", "You start here", 0, new Dictionary<int, string> { { 1, "west"}, {2, "east" }});
+            rooms.Add(room);
+            room.Init("starterRoom", "You start here", 1, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            rooms.Add(room);
+            room.Init("starterRoom", "You start here", 2, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            rooms.Add(room);
+            room.Init("starterRoom", "You start here", 3, new Dictionary<int, string> { { 1, "west" }, { 2, "east" } });
+            rooms.Add(room);
+            return rooms;
+      }
+  }
+
+
+  public struct MapItem
+  {
+      public string RoomName { get; set; }
+      public string RoomDescription { get; set; }
+
+      public int Key { get; set; }
+      public Dictionary<int, string> Exits { get; set; }
+
+      public void Init(string roomName, string roomDescription, int key, Dictionary<int, string> exits)
+      {
+          RoomName = RoomName;
+          RoomDescription = RoomDescription;
+          Key = key;
+          Exits = Exits;
+      }
+  }
+
+    public class GameService : IGameService
   {
     private bool running = true;
 
@@ -20,55 +57,55 @@ namespace CastleGrimtol.Project
     public void GetUserInput()
     {
 
-      CurrentRoom.Print();
-      CurrentRoom.PrintOptions();
-      string input = Console.ReadLine().ToLower();
-      Console.WriteLine("checking input");
+      //CurrentRoom.Print();
+      //CurrentRoom.PrintOptions();
+      //string input = Console.ReadLine().ToLower();
+     // Console.WriteLine("checking input");
 
-      string[] inputs = input.Split(' ');
+      //string[] inputs = input.Split(' ');
       //example input "go north"
       //string array for input is equal to spitting the input at go and at north
       //go is index 0 and north is index 1
 
 
-      string option = "";
+     // string option = "";
       //here we check to make sure input string length is greater than one
-      if (inputs.Length > 1)
-      {
-        Console.WriteLine("input string length is greater than one");
-        option = inputs[1];
-        //input at index 1 is the direction entered
-        //option now becomes direction
-        Console.WriteLine("this is the direction chosen: " + option);
+      // if (inputs.Length > 1)
+      // {
+      //   Console.WriteLine("input string length is greater than one");
+      //   option = inputs[1];
+      //   //input at index 1 is the direction entered
+      //   //option now becomes direction
+      //   Console.WriteLine("this is the direction chosen: " + option);
 
-      }
-      Console.WriteLine("should be entering switch");
-      Console.WriteLine("checking value of input: " + input);
-      Console.WriteLine("");
-      switch (input)
-      {
-        case "go south":
-          Console.WriteLine("going south");
-          Go(option);
-          break;
-        case "go north":
-          Console.WriteLine("going north");
-          Go(option);
+      // }
+      // Console.WriteLine("should be entering switch");
+      // Console.WriteLine("checking value of input: " + input);
+      // Console.WriteLine("");
+      // switch (input)
+      // {
+      //   case "go south":
+      //     Console.WriteLine("going south");
+      //     Go(option);
+      //     break;
+      //   case "go north":
+      //     Console.WriteLine("going north");
+      //     Go(option);
 
-          break;
-        case "go east":
-          Console.WriteLine("going east");
-          Go(option);
-          break;
-        case "go west":
-          Console.WriteLine("going west");
-          Go(option);
-          break;
-        case "default":
-          Console.Write("please choose valid option");
-          break;
+      //     break;
+      //   case "go east":
+      //     Console.WriteLine("going east");
+      //     Go(option);
+      //     break;
+      //   case "go west":
+      //     Console.WriteLine("going west");
+      //     Go(option);
+      //     break;
+      //   case "default":
+      //     Console.Write("please choose valid option");
+      //     break;
 
-      }
+      // }
 
 
     }
@@ -76,7 +113,7 @@ namespace CastleGrimtol.Project
     {
 
       Console.WriteLine("going to:  " + direction);
-      CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
+      //CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
 
 
 
@@ -121,31 +158,26 @@ namespace CastleGrimtol.Project
 
     public void Setup()
     {
-
-      Room Room1 = new Room("StarterRoom", "Here is where you start.  You are east of room two.");
-      Room Room2 = new Room("SecondRoom", "You have gone east from the start. You have entered into the second room.  ");
-      Room Room3 = new Room("ThirdRoom", "You have gone north to the third room");
-      Room Room4 = new Room("FinalRoom", "You went west of the starter room.  You are now in the final room.");
+            var roomMapListing = CastleMap.ListItems();
+            var rooms = new List<Room>();
+            //foreach (roomMapListing )
 
 
 
-      //build rooms
 
-      //build relationships of rooms to each other
+            //build rooms
 
-      //buiding relationships with rooms and exits
-      Room1.Exits.Add("east", Room2);
-      Room2.Exits.Add("west", Room1);
-      Room2.Exits.Add("north", Room3);
-      Room3.Exits.Add("south", Room2);
-      Room1.Exits.Add("west", Room4);
+           
+
+         
+      
 
       //                                                     [room 3-final wrong room]north 
       // [room 4 final right room] --west[room 1] -go east   [room 2] south of room 3
 
 
-      //added current room as room1 
-      CurrentRoom = Room1;
+      
+     
 
 
 
@@ -195,7 +227,7 @@ namespace CastleGrimtol.Project
         }
         else
         {
-          Console.WriteLine("Your responce is invalid.  Don't for get the rules.");
+          Console.WriteLine("Your responce is invalid.  Don't forget the rules.");
           Thread.Sleep(500);
           Console.Clear();
 
