@@ -6,51 +6,52 @@ using System;
 
 namespace CastleGrimtol.Project
 {
-  
+
   public static class CastleMap
   {
 
-        //                                                             [room 2-final wrong room]north 
-        // [room 3 final right room] --west[room 0 starter] -go east   [room 1 locked] south of room 3
-        public static List<MapItem> ListItems()
-      {
-            var rooms = new List<MapItem>();
-            var room = new MapItem();
-            room.Init("starterRoom", "You start here", 0, new Dictionary<int, string> { { 3, "west"}, {1, "east" }});
-            rooms.Add(room);
-            room.Init("lockedRoom", "You start here", 1, new Dictionary<int, string> { { 0, "east" }, { 2, "north" } });
-            rooms.Add(room);
-            room.Init("NorthDeathTrap", "You start here", 2, new Dictionary<int, string> { { 1, "south" }, { 3, "west" } });
-            rooms.Add(room);
-            room.Init("WestFinalRoom", "You start here", 3, new Dictionary<int, string> { { 0, "east" }, { 3, "east" } });
-            rooms.Add(room);
-            return rooms;
-      }
+    //                                                             [room 2-final wrong room]north 
+    // [room 3 final right room] --west[room 0 starter] -go east   [room 1 locked] south of room 3
+    public static List<MapItem> ListItems()
+    {
+      var rooms = new List<MapItem>();
+      var room = new MapItem();
+      room.Init("starterRoom", "You start here", 0, new Dictionary<int, string> { { 3, "west" }, { 1, "east" } });
+      rooms.Add(room);
+      room.Init("lockedRoom", "You start here", 1, new Dictionary<int, string> { { 0, "east" }, { 2, "north" } });
+      rooms.Add(room);
+      room.Init("NorthDeathTrap", "You start here", 2, new Dictionary<int, string> { { 1, "south" }, { 3, "west" } });
+      rooms.Add(room);
+      room.Init("WestFinalRoom", "You start here", 3, new Dictionary<int, string> { { 0, "east" }, { 3, "east" } });
+      rooms.Add(room);
+      return rooms;
+    }
   }
 
 
   public struct MapItem
   {
-      public string RoomName { get; set; }
-      public string RoomDescription { get; set; }
+    public string RoomName { get; set; }
+    public string RoomDescription { get; set; }
 
-      public int Key { get; set; }
-      public Dictionary<int, string> Exits { get; set; }
+    public int Key { get; set; }
+    public Dictionary<int, string> Exits { get; set; }
 
-      public void Init(string roomName, string roomDescription, int key, Dictionary<int, string> exits)
-      {
-          RoomName = RoomName;
-          RoomDescription = RoomDescription;
-          Key = key;
-          Exits = Exits;
-      }
+    public void Init(string roomName, string roomDescription, int key, Dictionary<int, string> exits)
+    {
+      RoomName = RoomName;
+      RoomDescription = RoomDescription;
+      Key = key;
+      Exits = Exits;
+    }
   }
 
-    public class GameService : IGameService
+  public class GameService : IGameService
   {
     private bool running = true;
 
     public Room CurrentRoom { get; set; }
+    //what if mutilple players - this should be tracked by player model
     //this gets and sets the current room
     //set this up in setup
     public Player CurrentPlayer { get; set; }
@@ -61,62 +62,78 @@ namespace CastleGrimtol.Project
     {
 
       //CurrentRoom.Print();
-      //CurrentRoom.PrintOptions();
-      //string input = Console.ReadLine().ToLower();
-     // Console.WriteLine("checking input");
+      CurrentRoom.PrintOptions();
+      string input = Console.ReadLine().ToLower();
+      // Console.WriteLine("checking input");
 
-      //string[] inputs = input.Split(' ');
+      string[] inputs = input.Split(' ');
       //example input "go north"
       //string array for input is equal to spitting the input at go and at north
       //go is index 0 and north is index 1
 
 
-     // string option = "";
+      string option = "";
       //here we check to make sure input string length is greater than one
-      // if (inputs.Length > 1)
-      // {
-      //   Console.WriteLine("input string length is greater than one");
-      //   option = inputs[1];
-      //   //input at index 1 is the direction entered
-      //   //option now becomes direction
-      //   Console.WriteLine("this is the direction chosen: " + option);
+      if (inputs.Length > 1)
+      {
+        //   Console.WriteLine("input string length is greater than one");
+        option = inputs[1];
+        //   //input at index 1 is the direction entered
+        //   //option now becomes direction
+        //   Console.WriteLine("this is the direction chosen: " + option);
 
-      // }
+      }
       // Console.WriteLine("should be entering switch");
       // Console.WriteLine("checking value of input: " + input);
       // Console.WriteLine("");
-      // switch (input)
-      // {
-      //   case "go south":
-      //     Console.WriteLine("going south");
-      //     Go(option);
-      //     break;
-      //   case "go north":
-      //     Console.WriteLine("going north");
-      //     Go(option);
+      switch (input)
+      {
+        case "go south":
+          Console.WriteLine("going south");
+          Go(option);
+          break;
+        case "go north":
+          Console.WriteLine("going north");
+          Go(option);
 
-      //     break;
-      //   case "go east":
-      //     Console.WriteLine("going east");
-      //     Go(option);
-      //     break;
-      //   case "go west":
-      //     Console.WriteLine("going west");
-      //     Go(option);
-      //     break;
-      //   case "default":
-      //     Console.Write("please choose valid option");
-      //     break;
+          break;
+        case "go east":
+          Console.WriteLine("going east");
+          Go(option);
+          break;
+        case "go west":
+          Console.WriteLine("going west");
+          Go(option);
+          break;
+        case "default":
+          Console.Write("please choose valid option");
+          break;
 
-      // }
+      }
 
 
     }
-    public void Go(string direction)
+    public void Go(string key)
     {
 
-      Console.WriteLine("going to:  " + direction);
+
+
+      MapItem occupiedRoom;
+
+      if (occupiedRoom.Exits.ContainsKey(key))
+      {
+
+      }
       //CurrentRoom = (Room)CurrentRoom.GoToRoom(direction);
+
+      //if (Exits.ContainsKey(dir))
+      // {
+      //   Console.WriteLine("exits should contain direction used  " + dir);
+      //   Console.WriteLine(Exits[dir]);
+      //   return Exits[dir];
+      // }
+      // Console.WriteLine("Invalid direction");
+      // return this;
 
 
 
@@ -159,24 +176,29 @@ namespace CastleGrimtol.Project
       throw new System.NotImplementedException();
     }
 
+    public void PrintWelcome()
+    {
+      Console.WriteLine($"Welcome to ");
+      //Name is the name of the room
+      //this print should be accessed in gameservice
+      // to define what is printed in each different room
+    }
+
+
+
     public void Setup()
     {
-            var rooms = new List<Room>();
-            foreach (MapItem roomMI in CastleMap.ListItems())
-            {
-                Room roomInstance = new Room(roomMI.RoomName, roomMI.RoomDescription, roomMI.Key);
-                rooms.Add(roomInstance);
-            }
+      var rooms = new List<Room>();
+      foreach (MapItem roomMI in CastleMap.ListItems())
+      {
+        Room roomInstance = new Room(roomMI.RoomName, roomMI.RoomDescription, roomMI.Key);
+        rooms.Add(roomInstance);
+      }
 
 
 
 
-            //build rooms
-
-
-
-
-
+      //build rooms
 
 
 
@@ -187,7 +209,12 @@ namespace CastleGrimtol.Project
 
 
 
-        }
+
+
+
+
+
+    }
 
     public void StartGame()
     {
