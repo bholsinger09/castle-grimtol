@@ -124,7 +124,7 @@ namespace CastleGrimtol.Project
       #endregion
 
     }
-    public void Go(int key)
+    public void Go(int key, string dir)
     {
 
 
@@ -133,6 +133,7 @@ namespace CastleGrimtol.Project
 
       if (occupiedRoom.Exits.ContainsKey(key))
       {
+        return occupiedRoom.Exits(int key, string dir);
 
       }
 
