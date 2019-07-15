@@ -15,7 +15,14 @@ namespace CastleGrimtol.Project.Models
 
 
 
-
+    public string Print()
+    {
+      Console.WriteLine($"Welcome to {Name}");
+      return "Welcome to {Name}";
+      //Name is the name of the room
+      //this print should be accessed in gameservice
+      // to define what is printed in each different room
+    }
 
 
     //using printoptions because of exits
@@ -33,27 +40,27 @@ namespace CastleGrimtol.Project.Models
 
     public IRoom GoToRoom(string dir)
     {
-      //there is a go method already in GameService 
 
-      // Console.WriteLine("using method. going to : " + dir);
-      // if (Exits.ContainsKey(dir))
-      // {
-      //   Console.WriteLine("exits should contain direction used  " + dir);
-      //   Console.WriteLine(Exits[dir]);
-      //   return Exits[dir];
-      // }
-      // Console.WriteLine("Invalid direction");
-      // return this;
+
+      Console.WriteLine("using method. going to : " + dir);
+      if (Exits.ContainsKey(dir))
+      {
+        Console.WriteLine("exits should contain direction used  " + dir);
+        Console.WriteLine(Exits[dir]);
+        return Exits[dir];
+      }
+      Console.WriteLine("Invalid direction");
+      return this;
     }
 
 
-    public Room(string name, string description, int key)
+    public Room(string name, string description)
     {
       Name = name;
       Description = description;
       Exits = new Dictionary<string, IRoom>();
       Items = new List<Item>();
-      Key = key;
+      // Key = key;
     }
 
 
