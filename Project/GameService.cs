@@ -296,6 +296,7 @@ namespace CastleGrimtol.Project
       while (running)
       {
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
+        Console.ReadLine();
         string name = Console.ReadLine();
 
         Console.Clear();
