@@ -296,11 +296,11 @@ namespace CastleGrimtol.Project
       while (running)
       {
         Console.WriteLine("Welcome to Castle Grimstol.  What is your name?");
-        Console.ReadLine();
+        //Console.Clear();
+
+        //Console.ReadLine();
         string name = Console.ReadLine();
-
         Console.Clear();
-
         Console.WriteLine($"Rise and shine {name}");
         Thread.Sleep(500);
         Console.WriteLine("I want to play a game, the rules are simple.  ");
